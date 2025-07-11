@@ -1,0 +1,659 @@
+FODS LAB PROGRAMS
+1. Scenario: You are working on a project that involves analyzing student performance data for a
+class of 32 students. The data is stored in a NumPy array named student_scores, where each row
+represents a student and each column represents a different subject. The subjects are arranged in the
+following order: Math, Science, English, and History. Your task is to calculate the average score for
+each subject and identify the subject with the highest average score.
+
+Question: How would you use NumPy arrays to calculate the average score for each subject and
+determine the subject with the highest average score? Assume 4x4 matrix that stores marks of each
+student in given order.
+
+CODE:
+import numpy as np
+
+# Sample 4x4 matrix (replace with your actual 32x4 student_scores array)
+student_scores = np.array([
+    [85, 90, 78, 88],
+    [76, 82, 85, 80],
+    [92, 88, 91, 84],
+    [70, 75, 80, 78]
+])
+
+# Calculate average for each subject (column-wise)
+subject_averages = np.mean(student_scores, axis=0)
+
+# Find subject with highest average
+subjects = ['Math', 'Science', 'English', 'History']
+highest_avg_index = np.argmax(subject_averages)
+highest_avg_subject = subjects[highest_avg_index]
+
+print("Subject Averages:", subject_averages)
+print("Highest Average Subject:", highest_avg_subject)
+
+
+2. Scenario: You are a data analyst working for a company that sells products online. You have
+been tasked with analyzing the sales data for the past month. The data is stored in a NumPy array.
+
+Question: How would you find the average price of all the products sold in the past month?
+Assume 3x3 matrix with each row representing the sales for a different product 
+CODE:
+import numpy as np
+
+# Sample 3x3 sales data matrix (each row = product, each column = sale record or price)
+sales_data = np.array([
+    [100, 150, 200],
+    [120, 180, 160],
+    [90,  140, 130]
+])
+
+# Calculate the average price of all products sold
+average_price = np.mean(sales_data)
+
+print("Average Price of All Products Sold:", average_price)
+
+
+3. Scenario: You are working on a project that involves analyzing a dataset containing information
+about houses in a neighborhood. The dataset is stored in a CSV file, and you have imported it into a
+NumPy array named house_data. Each row of the array represents a house, and the columns
+contain various features such as the number of bedrooms, square footage, and sale price.
+Question: Using NumPy arrays and operations, how would you find the average sale price of
+houses with more than four bedrooms in the neighborhood?
+CODE:
+import numpy as np
+
+# Sample house_data: [bedrooms, square_footage, sale_price]
+house_data = np.array([
+    [3, 1500, 250000],
+    [5, 2200, 400000],
+    [4, 1800, 320000],
+    [6, 3000, 500000]
+])
+
+# Filter rows where bedrooms > 4
+filtered_houses = house_data[house_data[:, 0] > 4]
+
+# Calculate average sale price (column index 2)
+average_price = np.mean(filtered_houses[:, 2])
+
+print("Average Sale Price (houses with >4 bedrooms):", average_price)
+
+
+4. Scenario: You are working on a project that involves analyzing the sales performance of a
+company over the past four quarters. The quarterly sales data is stored in a NumPy array named
+sales_data, where each element represents the sales amount for a specific quarter. Your task is to
+calculate the total sales for the year and determine the percentage increase in sales from the first
+quarter to the fourth quarter.
+Question: Using NumPy arrays and arithmetic operations calculate the total sales for the year and
+determine the percentage increase in sales from the first quarter to the fourth quarter? 
+CODE:
+import numpy as np
+
+# Sample quarterly sales data: [Q1, Q2, Q3, Q4]
+sales_data = np.array([100000, 120000, 150000, 180000])
+
+# Total sales for the year
+total_sales = np.sum(sales_data)
+
+# Percentage increase from Q1 to Q4
+percent_increase = ((sales_data[3] - sales_data[0]) / sales_data[0]) * 100
+
+print("Total Sales for the Year:", total_sales)
+print("Percentage Increase from Q1 to Q4:", percent_increase, "%")
+
+5. Scenario: You are a data analyst working for a car manufacturing company. As part of your
+analysis, you have a dataset containing information about the fuel efficiency of different car
+models. The dataset is stored in a NumPy array named fuel_efficiency, where each element
+represents the fuel efficiency (in miles per gallon) of a specific car model. Your task is to calculate
+the average fuel efficiency and determine the percentage improvement in fuel efficiency between
+two car models.
+Question: How would you use NumPy arrays and arithmetic operations to calculate the average
+fuel efficiency and determine the percentage improvement in fuel efficiency between two car
+models?
+CODE:
+import numpy as np
+
+fuel_efficiency = np.array([22, 25, 28, 32, 36])  # Example: 5 car models
+
+average_efficiency = np.mean(fuel_efficiency)
+
+model1_eff = fuel_efficiency[0]  # first model
+model5_eff = fuel_efficiency[4]  # fifth model
+
+percentage_improvement = ((model5_eff - model1_eff) / model1_eff) * 100
+
+print(f"Average fuel efficiency: {average_efficiency:.2f} mpg")
+print(f"Percentage improvement from model 1 to model 5: {percentage_improvement:.2f}%")
+
+
+
+6. Scenario: You are a cashier at a grocery store and need to calculate the total cost of a customer's
+purchase, including applicable discounts and taxes. You have the item prices and quantities in
+separate lists, and the discount and tax rates are given as percentages. Your task is to calculate the
+total cost for the customer.
+Question: Use arithmetic operations to calculate the total cost of a customer's purchase, including
+discounts and taxes, given the item prices, quantities, discount rate, and tax rate?
+CODE:
+# Sample data
+item_prices = [100, 200, 50]       # Prices of items
+quantities = [2, 1, 4]             # Quantities of items
+discount_rate = 10                # 10% discount
+tax_rate = 5                      # 5% tax
+
+# Step 1: Calculate subtotal
+subtotal = sum(p * q for p, q in zip(item_prices, quantities))
+
+# Step 2: Apply discount
+discount = (discount_rate / 100) * subtotal
+subtotal_after_discount = subtotal - discount
+
+# Step 3: Apply tax
+tax = (tax_rate / 100) * subtotal_after_discount
+total_cost = subtotal_after_discount + tax
+
+print("Total Cost for Customer: ₹", total_cost)
+
+7. Scenario: You are working as a data analyst for an e-commerce company. You have been given
+a dataset containing information about customer orders, stored in a Pandas DataFrame named
+order_data. The DataFrame has columns for customer ID, order date, product name, and order
+quantity. Your task is to analyze the data and answer specific questions about the orders.
+Question: Using Pandas DataFrame operations, how would you find the following information
+from the order_data DataFrame:
+1. The total number of orders made by each customer.
+2. The average order quantity for each product.
+3. The earliest and latest order dates in the dataset. 
+
+CODE:
+import pandas as pd
+
+# Sample order_data DataFrame
+data = {
+    'customer_id': [101, 102, 101, 103, 102, 104],
+    'order_date': ['2023-07-01', '2023-07-02', '2023-07-05', '2023-07-03', '2023-07-06', '2023-07-04'],
+    'product_name': ['Laptop', 'Phone', 'Laptop', 'Tablet', 'Phone', 'Tablet'],
+    'order_quantity': [1, 2, 1, 1, 3, 2]
+}
+
+order_data = pd.DataFrame(data)
+
+# Convert order_date to datetime format
+order_data['order_date'] = pd.to_datetime(order_data['order_date'])
+
+# 1. Total number of orders made by each customer
+orders_per_customer = order_data['customer_id'].value_counts()
+
+# 2. Average order quantity for each product
+avg_quantity_per_product = order_data.groupby('product_name')['order_quantity'].mean()
+
+# 3. Earliest and latest order dates
+earliest_date = order_data['order_date'].min()
+latest_date = order_data['order_date'].max()
+
+# Output
+print("1. Orders per Customer:\n", orders_per_customer)
+print("\n2. Average Quantity per Product:\n", avg_quantity_per_product)
+print("\n3. Earliest Order Date:", earliest_date.date())
+print("   Latest Order Date:", latest_date.date())
+
+
+8. Scenario: You are a data scientist working for a company that sells products online. You have
+been tasked with analyzing the sales data for the past month. The data is stored in a Pandas data
+frame.
+Question: How would you find the top 5 products that have been sold the most in the past month? 
+CODE:
+import pandas as pd
+
+# Sample sales data
+data = {
+    'product_name': ['Laptop', 'Phone', 'Tablet', 'Phone', 'Laptop', 'Phone', 'Tablet', 'Mouse', 'Laptop'],
+    'quantity_sold': [2, 5, 3, 4, 3, 6, 2, 7, 1]
+}
+
+# Create DataFrame
+sales_df = pd.DataFrame(data)
+
+# Group by product and sum quantity sold
+total_sales = sales_df.groupby('product_name')['quantity_sold'].sum()
+
+# Sort in descending order and get top 5
+top_5_products = total_sales.sort_values(ascending=False).head(5)
+
+print("Top 5 Most Sold Products:\n", top_5_products)
+
+
+9. Scenario: You work for a real estate agency and have been given a dataset containing
+information about properties for sale. The dataset is stored in a Pandas DataFrame named
+property_data. The DataFrame has columns for property ID, location, number of bedrooms, area
+in square feet, and listing price. Your task is to analyze the data and answer specific questions about
+the properties.
+Question: Using Pandas DataFrame operations, how would you find the following information
+from the property_data DataFrame:
+1. The average listing price of properties in each location.
+2. The number of properties with more than four bedrooms.
+3. The property with the largest area. 
+CODE:
+import pandas as pd
+
+# Sample data
+data = {
+    'property_id': [1, 2, 3, 4, 5],
+    'location': ['Downtown', 'Uptown', 'Downtown', 'Suburbs', 'Uptown'],
+    'bedrooms': [3, 5, 4, 6, 2],
+    'area_sqft': [1500, 2200, 1800, 3000, 1100],
+    'listing_price': [300000, 500000, 350000, 600000, 250000]
+}
+
+property_data = pd.DataFrame(data)
+
+# 1. Average listing price of properties in each location
+avg_price_per_location = property_data.groupby('location')['listing_price'].mean()
+
+# 2. Number of properties with more than four bedrooms
+num_properties_over_4_bedrooms = (property_data['bedrooms'] > 4).sum()
+
+# 3. Property with the largest area
+largest_property = property_data.loc[property_data['area_sqft'].idxmax()]
+
+# Output
+print("1. Average Listing Price by Location:\n", avg_price_per_location)
+print("\n2. Number of Properties with >4 Bedrooms:", num_properties_over_4_bedrooms)
+print("\n3. Property with the Largest Area:\n", largest_property)
+
+
+import pandas as pd
+
+# Sample data
+data = {
+    'property_id': [1, 2, 3, 4, 5],
+    'location': ['Downtown', 'Uptown', 'Downtown', 'Suburbs', 'Uptown'],
+    'bedrooms': [3, 5, 4, 6, 2],
+    'area_sqft': [1500, 2200, 1800, 3000, 1100],
+    'listing_price': [300000, 500000, 350000, 600000, 250000]
+}
+
+property_data = pd.DataFrame(data)
+
+# 1. Average listing price of properties in each location
+avg_price_per_location = property_data.groupby('location')['listing_price'].mean()
+
+# 2. Number of properties with more than four bedrooms
+num_properties_over_4_bedrooms = (property_data['bedrooms'] > 4).sum()
+
+# 3. Property with the largest area
+largest_property = property_data.loc[property_data['area_sqft'].idxmax()]
+
+# Output
+print("1. Average Listing Price by Location:\n", avg_price_per_location)
+print("\n2. Number of Properties with >4 Bedrooms:", num_properties_over_4_bedrooms)
+print("\n3. Property with the Largest Area:\n", largest_property)
+
+10. Scenario: You are working on a data visualization project and need to create basic plots using
+Matplotlib. You have a dataset containing the monthly sales data for a company, including the
+month and corresponding sales values. Your task is to develop a Python program that generates line
+plots and bar plots to visualize the sales data.
+Question:
+1. How would you develop a Python program to create a line plot of the monthly sales data?
+2: How would you develop a Python program to create a bar plot of the monthly sales data?
+CODE:
+import matplotlib.pyplot as plt
+
+# Sample monthly sales data
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+sales = [10000, 12000, 9000, 15000, 17000, 16000]
+
+# 1. Line Plot
+plt.figure(figsize=(8, 4))
+plt.plot(months, sales, marker='o', color='blue', linestyle='-', linewidth=2)
+plt.title('Monthly Sales - Line Plot')
+plt.xlabel('Month')
+plt.ylabel('Sales Amount')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+# 2. Bar Plot
+plt.figure(figsize=(8, 4))
+plt.bar(months, sales, color='green')
+plt.title('Monthly Sales - Bar Plot')
+plt.xlabel('Month')
+plt.ylabel('Sales Amount')
+plt.tight_layout()
+plt.show()
+
+11. Scenario : You are a data scientist working for a company that sells products online. You have
+been tasked with creating a simple plot to show the sales of a product over time.
+Question:
+1. Write code to create a simple line plot in Python using Matplotlib to predict sales happened in a
+month?
+2. Write code to create a scatter plot in Python using Matplotlib to predict sales happened in a
+month?
+3. Develop a Python program to create a bar plot of the monthly sales data. 
+CODE:
+import matplotlib.pyplot as plt
+
+# Sample monthly sales data
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+sales = [1000, 1500, 1300, 1800, 2200, 2100]
+plt.figure(figsize=(8, 4))
+plt.plot(months, sales, marker='o', color='blue', linewidth=2)
+plt.title('Monthly Sales Trend - Line Plot')
+plt.xlabel('Month')
+plt.ylabel('Sales')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(8, 4))
+plt.scatter(months, sales, color='red', s=100)
+plt.title('Monthly Sales Distribution - Scatter Plot')
+plt.xlabel('Month')
+plt.ylabel('Sales')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(8, 4))
+plt.bar(months, sales, color='green')
+plt.title('Monthly Sales Summary - Bar Plot')
+plt.xlabel('Month')
+plt.ylabel('Sales')
+plt.tight_layout()
+plt.show()
+
+12. Scenario: You are working on a data analysis project that involves analyzing the monthly
+temperature and rainfall data for a city. You have a dataset containing the monthly temperature and
+rainfall values for each month of a year. Your task is to develop a Python program that generates
+line plots and scatter plots to visualize the temperature and rainfall data.
+Question:
+1. Develop a Python program to create a line plot of the monthly temperature data.
+2: Develop a Python program to create a scatter plot of the monthly rainfall data. 
+CODE:
+import matplotlib.pyplot as plt
+
+# Sample data
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+          'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+temperature = [25, 27, 30, 33, 35, 34, 32, 31, 29, 28, 26, 24]  # °C
+rainfall = [12, 15, 20, 35, 60, 120, 150, 140, 90, 45, 20, 10]  # mm
+
+plt.figure(figsize=(9, 4))
+plt.plot(months, temperature, color='orange', marker='o', linewidth=2)
+plt.title('Monthly Temperature - Line Plot')
+plt.xlabel('Month')
+plt.ylabel('Temperature (°C)')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(9, 4))
+plt.scatter(months, rainfall, color='blue', s=100)
+plt.title('Monthly Rainfall - Scatter Plot')
+plt.xlabel('Month')
+plt.ylabel('Rainfall (mm)')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+13. Scenario: You are working on a text analysis project and need to determine the frequency
+distribution of words in a given text document. You have a text document named "sample_text.txt"
+containing a paragraph of text. Your task is to develop a Python program that reads the text
+document, processes the text, and generates a frequency distribution of the words.
+Question: How would you develop a Python program to calculate the frequency distribution of
+words in a text document? 
+CODE:
+from google.colab import files
+uploaded = files.upload()
+# Create a sample text file
+sample_text = """
+Data science is a field that combines domain expertise, programming skills, 
+and knowledge of mathematics and statistics to extract meaningful insights 
+from data. It is used in business, healthcare, finance, and many other industries.
+"""
+
+with open('sample_text.txt', 'w') as file:
+    file.write(sample_text)
+
+14. Scenario: You are a data analyst working for a company that sells products online. You have
+been tasked with analyzing the sales data for the past month. The data is stored in a Pandas data
+frame.
+Question: Develop a code in python to find the frequency distribution of the ages of the customers
+who have made a purchase in the past month.
+CODE:
+import pandas as pd
+
+# Sample data
+data = {
+    'customer_id': [101, 102, 103, 104, 105, 106, 107, 108],
+    'age': [25, 30, 25, 40, 30, 35, 25, 40],
+    'purchase_amount': [120, 250, 80, 400, 150, 90, 300, 200]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Frequency distribution of customer ages
+age_distribution = df['age'].value_counts().sort_index()
+
+# Display result
+print("Frequency Distribution of Customer Ages:")
+print(age_distribution)
+
+15. Scenario: You are a data analyst working for a social media platform. As part of your analysis,
+you have a dataset containing user interaction data, including the number of likes received by each
+post. Your task is to develop a Python program that calculates the frequency distribution of likes
+among the posts.
+Question: Develop a Python program to calculate the frequency distribution of likes among the
+posts? 
+CODE:
+import pandas as pd
+
+# Sample interaction data
+data = {
+    'post_id': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'likes': [10, 15, 10, 20, 15, 30, 10, 20, 15, 30]
+}
+
+# Create a DataFrame
+df = pd.DataFrame(data)
+
+# Frequency distribution of likes
+like_distribution = df['likes'].value_counts().sort_index()
+
+# Display the result
+print("Frequency Distribution of Likes:")
+print(like_distribution)
+
+
+16. Scenario: You are working on a project that involves analyzing customer reviews for a product.
+You have a dataset containing customer reviews, and your task is to develop a Python program that
+calculates the frequency distribution of words in the reviews.
+Question: Develop a Python program to calculate the frequency distribution of words in the
+customer reviews dataset? 
+CODEE:
+import pandas as pd
+from collections import Counter
+import string
+
+# Sample dataset: customer reviews
+data = {
+    'review': [
+        "Great product, really loved it!",
+        "Good value for money.",
+        "Terrible quality, not recommended.",
+        "Excellent product. Highly recommend it.",
+        "Good quality and fast delivery.",
+        "Loved the packaging and quality!"
+    ]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Combine all reviews into one text block
+all_text = " ".join(df['review'])
+
+# Convert to lowercase and remove punctuation
+clean_text = all_text.lower().translate(str.maketrans('', '', string.punctuation))
+
+# Tokenize into words
+words = clean_text.split()
+
+# Count word frequencies
+word_freq = Counter(words)
+
+# Display top 10 words
+print("Top 10 Most Common Words in Reviews:")
+for word, freq in word_freq.most_common(10):
+    print(f"{word}: {freq}")
+17. Scenario: You are a data analyst working for a marketing research company. Your team has
+collected a large dataset containing customer feedback from various social media platforms. The
+dataset consists of thousands of text entries, and your task is to develop a Python program to
+analyze the frequency distribution of words in this dataset. Your program should be able to perform
+the following tasks:
+ Load the dataset from a CSV file (data.csv) containing a single column named "feedback"
+with each row representing a customer comment.
+ Preprocess the text data by removing punctuation, converting all text to lowercase, and
+eliminating any stop words (common words like "the," "and," "is," etc. that don't carry
+significant meaning).
+ Calculate the frequency distribution of words in the preprocessed dataset.
+ Display the top N most frequent words and their corresponding frequencies, where N is
+provided as user input.
+ Plot a bar graph to visualize the top N most frequent words and their frequencies.
+Question: Create a Python program that fulfills these requirements and helps your team gain
+insights from the customer feedback data. 
+
+CODE:
+import pandas as pd
+from collections import Counter
+import string
+import matplotlib.pyplot as plt
+from nltk.corpus import stopwords
+import nltk
+
+# Download NLTK stopwords (only once)
+nltk.download('stopwords')
+
+# 1. Load the dataset
+df = pd.read_csv('data.csv')  # Make sure data.csv exists and has a 'feedback' column
+
+# 2. Combine all feedback into a single text string
+all_feedback = " ".join(df['feedback'].dropna().astype(str))
+
+# 3. Preprocess the text
+# - Convert to lowercase
+# - Remove punctuation
+# - Remove stopwords
+clean_text = all_feedback.lower().translate(str.maketrans('', '', string.punctuation))
+words = clean_text.split()
+
+# Load English stopwords
+stop_words = set(stopwords.words('english'))
+
+# Remove stopwords
+filtered_words = [word for word in words if word not in stop_words]
+
+# 4. Calculate frequency distribution
+word_freq = Counter(filtered_words)
+
+# 5. Ask user for N most common words
+N = int(input("Enter the number of top frequent words to display: "))
+
+# Get top N words
+most_common_words = word_freq.most_common(N)
+
+# Display
+print(f"\nTop {N} Most Frequent Words:")
+for word, freq in most_common_words:
+    print(f"{word}: {freq}")
+
+# 6. Plot a bar chart
+words = [item[0] for item in most_common_words]
+frequencies = [item[1] for item in most_common_words]
+
+plt.figure(figsize=(10, 5))
+plt.bar(words, frequencies, color='skyblue')
+plt.title(f'Top {N} Most Frequent Words in Feedback')
+plt.xlabel('Words')
+plt.ylabel('Frequency')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+
+19. Scenario:
+You are a medical researcher investigating the effectiveness of a new drug in reducing blood
+pressure. You conduct a clinical trial with a sample of 50 patients who were randomly assigned to
+receive either the new drug or a placebo. After measuring their blood pressure levels at the end of
+the trial, you obtain the data for both groups. Now, you want to determine the confidence intervals
+for the mean reduction in blood pressure for both the drug and placebo groups.
+Question:
+"What is the 95% confidence interval for the mean reduction in blood pressure for patients who
+received the new drug? Also, what is the 95% confidence interval for the mean reduction in blood
+pressure for patients who received the placebo? 
+
+CODE:
+import numpy as np
+from scipy import stats
+
+# Simulated blood pressure reduction data (in mmHg)
+# Replace with real data if available
+np.random.seed(42)
+drug_group = np.random.normal(loc=10, scale=5, size=25)       # Mean=10, SD=5, n=25
+placebo_group = np.random.normal(loc=3, scale=4, size=25)     # Mean=3, SD=4, n=25
+
+# Function to compute 95% confidence interval
+def confidence_interval(data, confidence=0.95):
+    n = len(data)
+    mean = np.mean(data)
+    std_err = stats.sem(data)  # standard error
+    margin = stats.t.ppf((1 + confidence) / 2., n-1) * std_err
+    return mean, mean - margin, mean + margin
+
+# Calculate confidence intervals
+drug_mean, drug_lower, drug_upper = confidence_interval(drug_group)
+placebo_mean, placebo_lower, placebo_upper = confidence_interval(placebo_group)
+
+# Display results
+print(f"Drug Group: Mean = {drug_mean:.2f}, 95% CI = [{drug_lower:.2f}, {drug_upper:.2f}]")
+print(f"Placebo Group: Mean = {placebo_mean:.2f}, 95% CI = [{placebo_lower:.2f}, {placebo_upper:.2f}]")
+
+
+20. Scenario:
+You are a data scientist working for an e-commerce company. The marketing team has conducted
+an A/B test to evaluate the effectiveness of two different website designs (A and B) in terms of
+conversion rate. They randomly divided the website visitors into two groups, with one group
+experiencing design A and the other experiencing design B. After a week of data collection, you
+now have the conversion rate data for both groups. You want to determine whether there is a
+statistically significant difference in the mean conversion rates between the two website designs.
+Question:
+"Based on the data collected from the A/B test, is there a statistically significant difference in the
+mean conversion rates between website design A and website design B?" 
+
+CODE:
+import numpy as np
+from scipy import stats
+
+# Example data (conversion rates in % or decimals) — Replace with real data
+design_A = np.array([0.10, 0.12, 0.11, 0.13, 0.09, 0.10, 0.14, 0.12, 0.11, 0.13])
+design_B = np.array([0.15, 0.14, 0.16, 0.15, 0.18, 0.17, 0.16, 0.19, 0.15, 0.17])
+
+# Perform two-sample t-test (assuming equal variance)
+t_stat, p_value = stats.ttest_ind(design_A, design_B)
+
+# Display results
+print(f"T-statistic: {t_stat:.4f}")
+print(f"P-value: {p_value:.4f}")
+
+# Interpretation
+alpha = 0.05
+if p_value < alpha:
+    print(" There is a statistically significant difference in conversion rates between Design A and B.")
+else:
+    print(" There is no statistically significant difference in conversion rates between Design A and B.")
+
+
+
+
+
+
